@@ -12,7 +12,7 @@ export function useLoginForm() {
     password: yup.string().required("Пожалуйста ведите пароль").min(8, "пароль не может быть меньше 8 символов"),
   });
 
-  const {handleSubmit, errors} = useForm({
+  const {handleSubmit, errors, isSubmitting} = useForm({
     validationSchema: schema,
   });
   const { value: email } = useField('email');
@@ -29,7 +29,8 @@ export function useLoginForm() {
     email,
     password,
     onSubmit,
-    errors
+    errors,
+    isSubmitting,
   }
 
 }

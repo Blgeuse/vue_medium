@@ -4,7 +4,8 @@ import { useStore } from "vuex";
 import ValidationErrors from "../components/ValidationErrors.vue";
 import { useRegisterForm } from "../use/register-form";
 
-const { email, password, username, onSubmit, errors } = useRegisterForm();
+const { email, password, username, onSubmit, errors, isSubmitting } =
+  useRegisterForm();
 const store = useStore();
 
 const validationsErrors = computed(() => {
@@ -55,7 +56,10 @@ const validationsErrors = computed(() => {
                 placeholder="Password"
               />
             </fieldset>
-            <button class="btn btn-lg btn-primary pull-xs-right">
+            <button
+              :disabled="isSubmitting"
+              class="btn btn-lg btn-primary pull-xs-right"
+            >
               Sign up
             </button>
           </form>

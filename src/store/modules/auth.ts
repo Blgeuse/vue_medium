@@ -18,18 +18,33 @@ const mutations = {
   },
   registerFailure(state: AuthState, payload: object) {
     state.validationErrors = payload;
+    state.isLoggedIn = false;
   },
 
   loginStart(state: AuthState) {
     state.validationErrors = null;
   },
-  loginSuccess(state: AuthState,  payload: User) {
+  loginSuccess(state: AuthState, payload: User) {
     state.currentUser = payload;
     state.isLoggedIn = true;
   },
   loginFailure(state: AuthState, payload: object) {
     state.validationErrors = payload;
-  }
+    state.isLoggedIn = false;
+  },
+
+  getCurrentUserStart(state: AuthState) {
+    state.validationErrors = null;
+  },
+  getCurrentUserSuccess(state: AuthState, payload: User) {
+    state.currentUser = payload;
+    state.isLoggedIn = true;
+  },
+  getCurrentUserFailure(state: AuthState, payload: object) {
+    state.validationErrors = payload;
+    state.currentUser = null;
+    state.isLoggedIn = false;
+  },
 }
 
 const actions = {
@@ -59,6 +74,20 @@ const actions = {
     })
     .catch(result => {
       context.commit('loginFailure', result.response.data.errors);
+    })
+  })
+ },
+
+ getCurrentUser(context: any,) {
+  return new Promise(resolve => {
+    context.commit('getCurrentUserStart');
+    authApi.getCurrentUser()
+    .then(response => {
+      context.commit('getCurrentUserSuccess', response.data.user);
+      resolve(response.data.user)
+    })
+    .catch(() => {
+      context.commit('getCurrentUserFailure');
     })
   })
  }

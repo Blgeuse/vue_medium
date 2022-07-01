@@ -4,7 +4,7 @@ import { useStore } from "vuex";
 import { useLoginForm } from "../use/login-form";
 import ValidationErrors from "../components/ValidationErrors.vue";
 
-const { email, password, onSubmit, errors } = useLoginForm();
+const { email, password, onSubmit, errors, isSubmitting } = useLoginForm();
 const store = useStore();
 
 const validationsErrors = computed(() => {
@@ -46,7 +46,10 @@ const validationsErrors = computed(() => {
                 placeholder="Password"
               />
             </fieldset>
-            <button class="btn btn-lg btn-primary pull-xs-right">
+            <button
+              :disabled="isSubmitting"
+              class="btn btn-lg btn-primary pull-xs-right"
+            >
               Sign up
             </button>
           </form>

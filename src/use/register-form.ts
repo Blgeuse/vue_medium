@@ -6,14 +6,14 @@ import { useRouter } from 'vue-router';
 export function useRegisterForm() {
   const store = useStore();
   const router = useRouter();
-  
+
   const schema = yup.object({
     email: yup.string().required("Пожалуйста ведите email").email("Необходимо вести корректный email"),
     username: yup.string().required("Пожалуйста ведите имя"),
     password: yup.string().required("Пожалуйста ведите пароль").min(8, "пароль не может быть меньше 8 символов"),
   });
 
-  const {handleSubmit, errors} = useForm({
+  const {handleSubmit, errors, isSubmitting} = useForm({
     validationSchema: schema,
   });
   const { value: email } = useField('email');
@@ -32,7 +32,8 @@ export function useRegisterForm() {
     password,
     username,
     onSubmit,
-    errors
+    errors,
+    isSubmitting,
   }
 
 }

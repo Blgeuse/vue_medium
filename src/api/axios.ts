@@ -1,8 +1,11 @@
 import axios from 'axios';
 import { getItem } from '../utils/presistanceStorage';
 
-axios.defaults.baseURL = 'https://api.realworld.io/api'
-axios.interceptors.request.use(config => {
+const requestAxios = axios.create({
+  baseURL: 'https://api.realworld.io/api',
+})
+
+requestAxios.interceptors.request.use(config => {
   const token = getItem('accessToken');
   const authorizationToken = token ? `Token ${token}` : '';
   config.headers.Authorization = authorizationToken;
@@ -10,4 +13,4 @@ axios.interceptors.request.use(config => {
 })
 
 
-export default axios
+export default requestAxios

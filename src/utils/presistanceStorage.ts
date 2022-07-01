@@ -8,6 +8,7 @@ export function getItem(key: string)  {
       return null;
     }
   }
+  return null;
 }
 
 export function setItem(key: string, data: any) {

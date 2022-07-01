@@ -2,7 +2,7 @@
 import { computed } from "@vue/reactivity";
 
 const props = defineProps<{
-  validationErrors: Object;
+  validationErrors: object;
 }>();
 const errorMessages = computed(() => {
   return Object.keys(props.validationErrors).map((name) => {

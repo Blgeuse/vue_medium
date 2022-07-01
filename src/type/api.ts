@@ -30,3 +30,9 @@ export interface AuthState {
   validationErrors: null | object,
   isLoggedIn:  null | boolean,
 }
+
+export interface FeedState {
+  data: null | object,
+  isLoading: boolean,
+  error: null | object,
+}

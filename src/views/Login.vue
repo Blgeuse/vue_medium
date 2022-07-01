@@ -1,17 +1,16 @@
 <script setup lang="ts">
 import { computed } from "@vue/reactivity";
 import { useStore } from "vuex";
+import { useLoginForm } from "../use/login-form";
 import ValidationErrors from "../components/ValidationErrors.vue";
-import { useRegisterForm } from "../use/register-form";
 
-const { email, password, username, onSubmit, errors } = useRegisterForm();
+const { email, password, onSubmit, errors } = useLoginForm();
 const store = useStore();
 
 const validationsErrors = computed(() => {
   return store.state.auth.validationErrors;
 });
 </script>
-
 <template>
   <div class="auth-page">
     <div class="container page">
@@ -19,7 +18,7 @@ const validationsErrors = computed(() => {
         <div class="col-md-6 offset-md-3 col-xs-12">
           <h1 class="text-xs-center">Sign up</h1>
           <p class="text-xs-center">
-            <router-link to="/login">Have an account?</router-link>
+            <router-link to="/register">Need an account?</router-link>
           </p>
           <ul class="error-messages">
             <li v-for="error in errors" :key="error">{{ error }}</li>
@@ -30,14 +29,6 @@ const validationsErrors = computed(() => {
             />
           </ul>
           <form @submit.prevent="onSubmit">
-            <fieldset class="form-group">
-              <input
-                class="form-control form-control-lg"
-                type="text"
-                v-model="username"
-                placeholder="Your Name"
-              />
-            </fieldset>
             <fieldset class="form-group">
               <input
                 class="form-control form-control-lg"

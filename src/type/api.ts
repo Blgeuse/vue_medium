@@ -26,7 +26,6 @@ export interface User {
 }
 
 export interface AuthState {
-  isSubmitting: boolean,
   currentUser: null | User,
   validationErrors: null | object,
   isLoggedIn:  null | boolean,

@@ -36,7 +36,7 @@ const currentUser = computed(() => {
           </li>
           <li class="nav-item">
             <router-link
-              class="nav-link"
+              class="nav-link ellipsis"
               :to="{
                 name: 'userProfile',
                 params: { slug: currentUser.username },
@@ -65,4 +65,11 @@ const currentUser = computed(() => {
   </nav>
 </template>
 
-<style scoped></style>
+<style scoped>
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 150px;
+}
+</style>

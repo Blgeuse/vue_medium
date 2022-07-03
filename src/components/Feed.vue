@@ -3,6 +3,7 @@ import { computed } from "@vue/reactivity";
 import { onMounted } from "vue";
 import { useStore } from "vuex";
 import Spinner from "./Spinner.vue";
+import Pagination from "./Pagination.vue";
 
 const props = defineProps<{
   apiUrl: string;
@@ -13,7 +14,6 @@ onMounted(() => {
   store.dispatch("getFeed", { apiUrl: props.apiUrl });
 });
 const isLoading = computed(() => store.state.feed.isLoading);
-const error = computed(() => store.state.feed.error);
 const feed = computed(() => store.state.feed.data);
 </script>
 
@@ -21,7 +21,6 @@ const feed = computed(() => store.state.feed.data);
   <div v-if="isLoading">
     <Spinner bottom size="100" />
   </div>
-  <div v-if="error">{{ error }}</div>
   <div v-if="feed">
     <div
       v-for="(article, index) in feed.articles"
@@ -64,6 +63,7 @@ const feed = computed(() => store.state.feed.data);
         <span>Read more...</span>
       </router-link>
     </div>
+    <Pagination :total="5000" :limit="10" :current-page="51" :url="'/'" />
   </div>
 </template>
 

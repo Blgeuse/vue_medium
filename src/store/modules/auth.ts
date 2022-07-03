@@ -1,6 +1,6 @@
 import authApi from '../../api/auth';
 import { setItem } from '../../utils/presistanceStorage';
-import {NewUser, User, AuthState, LoginUser} from '../../type/api';
+import {NewUser, UpdateUser, User, AuthState, LoginUser} from '../../type/api';
 
 const state: AuthState = {
   currentUser: null,
@@ -44,6 +44,10 @@ const mutations = {
     state.validationErrors = payload;
     state.currentUser = null;
     state.isLoggedIn = false;
+  },
+
+  updateCurrentUserSettingsSuccess(state: AuthState, payload: User) {
+    state.currentUser = payload;
   },
 }
 
@@ -91,6 +95,22 @@ const actions = {
     })
   })
  },
+ updateCurrentUser(context: any, {currentUserInput} : {currentUserInput: UpdateUser}) {
+
+  return new Promise(resolve => {
+    authApi.updateCurrentUser(currentUserInput)
+    .then(user => {
+      console.log('3 success', user)
+      context.commit('updateCurrentUserSettingsSuccess', user);
+      setItem('accessToken', user.token);
+      resolve(user)
+    })
+    .catch(result => {
+      console.log('4 eerrr', result.response.data, result)
+      context.commit('updateCurrentUseerSettingsFailure', result.response.data);
+    })
+  })
+ }
 }
 
 export default {

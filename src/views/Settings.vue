@@ -10,7 +10,7 @@ const { email, username, bio, image, onSubmit, errors, isSubmitting } =
   useSettingForm();
 
 const validationsErrors = computed(() => {
-  return store.state.auth.validationErrors;
+  return store.state.settings.validationErrors;
 });
 </script>
 
@@ -30,6 +30,7 @@ const validationsErrors = computed(() => {
           <form @submit.prevent="onSubmit">
             <fieldset>
               <fieldset class="form-group">
+                <label for="">URL of profile picture</label>
                 <input
                   v-model.trim="image"
                   type="text"
@@ -38,6 +39,7 @@ const validationsErrors = computed(() => {
                 />
               </fieldset>
               <fieldset class="form-group">
+                <label for="">Your Name</label>
                 <input
                   v-model.trim="username"
                   type="text"
@@ -46,6 +48,7 @@ const validationsErrors = computed(() => {
                 />
               </fieldset>
               <fieldset class="form-group">
+                <label for="">Short bio about you</label>
                 <textarea
                   v-model.trim="bio"
                   rows="8"
@@ -54,6 +57,7 @@ const validationsErrors = computed(() => {
                 ></textarea>
               </fieldset>
               <fieldset class="form-group">
+                <label for="">Email</label>
                 <input
                   v-model.trim="email"
                   type="text"

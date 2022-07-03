@@ -2,9 +2,12 @@
 import { computed } from "@vue/reactivity";
 
 const props = defineProps<{
-  validationErrors: object;
+  validationErrors: object | string;
 }>();
 const errorMessages = computed(() => {
+  if (typeof props.validationErrors === "string") {
+    return [props.validationErrors];
+  }
   return Object.keys(props.validationErrors).map((name) => {
     return `${name}: ${props.validationErrors[name].join(", ")}`;
   });

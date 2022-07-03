@@ -21,12 +21,12 @@ export default createRouter({
     {
       path: '/feed',
       name: 'yourFeed',
-      component: () => import('../views/Home.vue'),
+      component: () => import('../views/YourFeed.vue'),
     },
     {
       path: '/tags/:slug',
       name: 'tag',
-      component: () => import('../views/Home.vue'),
+      component: () => import('../views/TagFeed.vue'),
     },
     {
       path: '/articles/new',

@@ -1,8 +1,13 @@
 <script setup lang="ts">
+import { computed } from "vue";
+import { useRoute } from "vue-router";
 import Feed from "../components/Feed.vue";
 import PopularTags from "../components/PopularTags.vue";
 import FeedToggler from "./FeedToggler.vue";
-const apiUrl = "/articles";
+const route = useRoute();
+
+const tag = computed(() => route.params.slug);
+const apiUrl = computed(() => `/articles?tag=${tag}`);
 </script>
 <template>
   <div class="home-page">
@@ -16,7 +21,7 @@ const apiUrl = "/articles";
     <div class="container page">
       <div class="row">
         <div class="col-md-9">
-          <FeedToggler />
+          <FeedToggler :tag="tag" />
           <Feed :api-url="apiUrl" />
         </div>
 

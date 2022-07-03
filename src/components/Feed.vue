@@ -41,7 +41,7 @@ onMounted(() => {
 
 <template>
   <div v-if="isLoading">
-    <Spinner bottom size="100" />
+    <Spinner size="100" />
   </div>
   <div v-if="feed">
     <div

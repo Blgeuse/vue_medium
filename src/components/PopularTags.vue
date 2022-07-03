@@ -14,7 +14,7 @@ onMounted(() => {
   <div class="col-md-3">
     <div class="sidebar">
       <p>Popular Tags</p>
-      <span v-if="isLoading">Loading tags</span>
+      <span v-if="isLoading">Loading tags...</span>
       <div v-else class="tag-list">
         <router-link
           v-for="tag in tags"

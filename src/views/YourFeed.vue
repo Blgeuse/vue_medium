@@ -2,7 +2,7 @@
 import Feed from "../components/Feed.vue";
 import PopularTags from "../components/PopularTags.vue";
 import FeedToggler from "./FeedToggler.vue";
-const apiUrl = "/articles";
+const apiUrl = "/articles/feed";
 </script>
 <template>
   <div class="home-page">

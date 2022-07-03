@@ -3,18 +3,14 @@ import { computed } from "@vue/reactivity";
 
 const props = defineProps<{
   center?: boolean;
-  bottom?: boolean;
   size?: string;
 }>();
 
 const size = computed(() => (props.size ? `${props.size}px` : "200px"));
-const classes = computed(() => {
-  return [props.center ? "classes center" : "", props.bottom ? "classes" : ""];
-});
 </script>
 
 <template>
-  <div :class="classes">
+  <div :class="{ center: props.center }">
     <svg
       style="
         margin: auto;
@@ -50,15 +46,13 @@ const classes = computed(() => {
 </template>
 
 <style scoped>
-.classes {
+.center {
+  top: 0;
   margin: auto;
   height: 200px;
   position: absolute;
   left: 0;
   bottom: 0;
   right: 0;
-}
-.center {
-  top: 0;
 }
 </style>

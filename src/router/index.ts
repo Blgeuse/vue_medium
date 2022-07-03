@@ -46,7 +46,7 @@ export default createRouter({
     {
       path: '/settings',
       name: 'settings',
-      component: () => import('../views/Home.vue'),
+      component: () => import('../views/Settings.vue'),
     },
     {
       path: '/profiles/:slug',

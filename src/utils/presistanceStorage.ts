@@ -16,6 +16,5 @@ export function setItem(key: string, data: any) {
     localStorage.setItem(key, JSON.stringify(data));
   } catch(e) {
     console.log('setItem', e);
-
   }
 }

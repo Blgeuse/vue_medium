@@ -36,3 +36,14 @@ export interface FeedState {
   isLoading: boolean,
   error: null | object,
 }
+export interface SettingState {
+  validationErrors: null | object,
+}
+
+export interface UpdateUser {
+  email: string | null;
+  password: string | null;
+  username: string | null;
+  bio: string | null;
+  image: string | null;
+}

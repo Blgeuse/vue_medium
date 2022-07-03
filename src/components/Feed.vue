@@ -2,6 +2,7 @@
 import { computed } from "@vue/reactivity";
 import { onMounted } from "vue";
 import { useStore } from "vuex";
+import Spinner from "./Spinner.vue";
 
 const props = defineProps<{
   apiUrl: string;
@@ -17,7 +18,9 @@ const feed = computed(() => store.state.feed.data);
 </script>
 
 <template>
-  <div v-if="isLoading">loading</div>
+  <div v-if="isLoading">
+    <Spinner bottom size="100" />
+  </div>
   <div v-if="error">{{ error }}</div>
   <div v-if="feed">
     <div

@@ -90,7 +90,7 @@ const actions = {
       context.commit('getCurrentUserFailure');
     })
   })
- }
+ },
 }
 
 export default {

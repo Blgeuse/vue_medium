@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { getItem } from '../utils/presistanceStorage';
+import { API_URL } from '../utils/constants';
 
 const requestAxios = axios.create({
-  baseURL: 'https://api.realworld.io/api',
+  baseURL: API_URL,
 })
 
 requestAxios.interceptors.request.use(config => {

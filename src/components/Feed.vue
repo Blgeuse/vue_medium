@@ -1,20 +1,43 @@
 <script setup lang="ts">
-import { computed } from "@vue/reactivity";
-import { onMounted } from "vue";
+import { onMounted, watch, computed } from "vue";
 import { useStore } from "vuex";
+import { useRoute } from "vue-router";
+import { stringify, parseUrl } from "query-string";
 import Spinner from "./Spinner.vue";
 import Pagination from "./Pagination.vue";
+import { LIMIT_PAGES } from "../utils/constants";
 
 const props = defineProps<{
   apiUrl: string;
 }>();
 const store = useStore();
+const route = useRoute();
 
-onMounted(() => {
-  store.dispatch("getFeed", { apiUrl: props.apiUrl });
-});
+function getFeed() {
+  const parsedUrl = parseUrl(props.apiUrl);
+  const params = stringify({
+    limit: LIMIT_PAGES,
+    offset: offset.value,
+    ...parsedUrl.query,
+  });
+  const apiUrlWithParams = `${parsedUrl.url}?${params}`;
+  store.dispatch("getFeed", { apiUrl: apiUrlWithParams });
+}
+
 const isLoading = computed(() => store.state.feed.isLoading);
 const feed = computed(() => store.state.feed.data);
+
+const currentPage = computed(() => Number(route.query.page || 1));
+const url = computed(() => route.path);
+const offset = computed(() => currentPage.value * LIMIT_PAGES - LIMIT_PAGES);
+
+watch(currentPage, () => {
+  getFeed();
+});
+onMounted(() => {
+  getFeed();
+  console.log(feed);
+});
 </script>
 
 <template>
@@ -63,7 +86,12 @@ const feed = computed(() => store.state.feed.data);
         <span>Read more...</span>
       </router-link>
     </div>
-    <Pagination :total="5000" :limit="10" :current-page="51" :url="'/'" />
+    <Pagination
+      :total="feed.articlesCount"
+      :limit="LIMIT_PAGES"
+      :current-page="currentPage"
+      :url="url"
+    />
   </div>
 </template>
 

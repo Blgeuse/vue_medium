@@ -11,6 +11,7 @@ const props = defineProps<{
 const pages = computed(() => {
   return Math.ceil(props.total / props.limit);
 });
+
 </script>
 <template>
   <ul class="pagination">

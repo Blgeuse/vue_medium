@@ -4,7 +4,6 @@ import feedApi from '../../api/feed';
 const state = {
   data: null,
   isLoading: false,
-  error: null,
 }
 
 const mutations = {
@@ -42,4 +41,3 @@ export default {
   actions,
   mutations,
 }
-

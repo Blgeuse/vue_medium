@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Feed from "../components/Feed.vue";
+import PopularTags from "../components/PopularTags.vue";
 const apiUrl = "/articles";
 </script>
 <template>
@@ -13,7 +14,6 @@ const apiUrl = "/articles";
 
     <div class="container page">
       <div class="row">
-
         <div class="col-md-9">
           <div class="feed-toggle">
             <ul class="nav nav-pills outline-active">
@@ -29,21 +29,7 @@ const apiUrl = "/articles";
 
         <Feed :api-url="apiUrl" />
 
-        <div class="col-md-3">
-          <div class="sidebar">
-            <p>Popular Tags</p>
-            <div class="tag-list">
-              <a href="" class="tag-pill tag-default">programming</a>
-              <a href="" class="tag-pill tag-default">javascript</a>
-              <a href="" class="tag-pill tag-default">emberjs</a>
-              <a href="" class="tag-pill tag-default">angularjs</a>
-              <a href="" class="tag-pill tag-default">react</a>
-              <a href="" class="tag-pill tag-default">mean</a>
-              <a href="" class="tag-pill tag-default">node</a>
-              <a href="" class="tag-pill tag-default">rails</a>
-            </div>
-          </div>
-        </div>
+        <PopularTags />
       </div>
     </div>
   </div>

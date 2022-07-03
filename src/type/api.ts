@@ -34,7 +34,10 @@ export interface AuthState {
 export interface FeedState {
   data: null | object,
   isLoading: boolean,
-  error: null | object,
+}
+export interface PopularTagsState {
+  tags: null | object,
+  isLoading: boolean,
 }
 export interface SettingState {
   validationErrors: null | object,

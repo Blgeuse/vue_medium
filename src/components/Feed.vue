@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { onMounted, watch, computed, ref } from "vue";
+import { onMounted, watch, computed } from "vue";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
 import { stringify, parseUrl } from "query-string";
+import { LIMIT_PAGES } from "../utils/constants";
 import Spinner from "./Spinner.vue";
 import Pagination from "./Pagination.vue";
-import { LIMIT_PAGES } from "../utils/constants";
 import TagList from "./TagList.vue";
 
 const props = defineProps<{

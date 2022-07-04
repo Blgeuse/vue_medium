@@ -95,8 +95,8 @@ const actions = {
     })
   })
  },
- updateCurrentUser(context: any, {currentUserInput} : {currentUserInput: UpdateUser}) {
 
+ updateCurrentUser(context: any, {currentUserInput} : {currentUserInput: UpdateUser}) {
   return new Promise(resolve => {
     authApi.updateCurrentUser(currentUserInput)
     .then(user => {

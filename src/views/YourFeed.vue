@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Feed from "../components/Feed.vue";
 import PopularTags from "../components/PopularTags.vue";
-import FeedToggler from "./FeedToggler.vue";
+import FeedToggler from "../components/FeedToggler.vue";
 const apiUrl = "/articles/feed";
 </script>
 <template>

@@ -100,13 +100,11 @@ const actions = {
   return new Promise(resolve => {
     authApi.updateCurrentUser(currentUserInput)
     .then(user => {
-      console.log('3 success', user)
       context.commit('updateCurrentUserSettingsSuccess', user);
       setItem('accessToken', user.token);
       resolve(user)
     })
     .catch(result => {
-      console.log('4 eerrr', result.response.data, result)
       context.commit('updateCurrentUseerSettingsFailure', result.response.data);
     })
   })

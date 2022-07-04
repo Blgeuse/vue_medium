@@ -36,7 +36,7 @@ export default createRouter({
     {
       path: '/articles/:slug',
       name: 'article',
-      component: () => import('../views/Home.vue'),
+      component: () => import('../views/Article.vue'),
     },
     {
       path: '/articles/:slug/edit',

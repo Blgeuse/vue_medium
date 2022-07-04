@@ -3,11 +3,11 @@ import { computed } from "vue";
 import { useRoute } from "vue-router";
 import Feed from "../components/Feed.vue";
 import PopularTags from "../components/PopularTags.vue";
-import FeedToggler from "./FeedToggler.vue";
+import FeedToggler from "../components/FeedToggler.vue";
 const route = useRoute();
 
 const tag = computed(() => route.params.slug);
-const apiUrl = computed(() => `/articles?tag=${tag}`);
+const apiUrl = computed(() => `/articles?tag=${tag.value}`);
 </script>
 <template>
   <div class="home-page">

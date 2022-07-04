@@ -1,17 +1,30 @@
 <script setup lang="ts">
 import { computed, onMounted } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { useStore } from "vuex";
 import Spinner from "../components/Spinner.vue";
 
 const store = useStore();
+const router = useRouter();
 const route = useRoute();
 
 const isLoading = computed(() => store.state.article.isLoading);
 const article = computed(() => store.state.article.article);
+const currentUser = computed(() => store.state.auth.currentUser);
+const isAuthor = computed(() => {
+  if (!currentUser.value || !article.value) return false;
+  return currentUser.value.username === article.value.author.username;
+});
+const slug = computed(() => route.params.slug);
+
+function deleteArticle() {
+  store
+    .dispatch("deleteArticle", { slug: slug.value })
+    .then(() => router.push({ name: "home" }));
+}
 
 onMounted(() => {
-  store.dispatch("getArticle", { slug: route.params.slug });
+  store.dispatch("getArticle", { slug: slug.value });
 });
 </script>
 <template>
@@ -41,27 +54,33 @@ onMounted(() => {
             </router-link>
             <span class="date">{{ article.createdAt }}</span>
           </div>
-          <span>
+
+          <span v-if="isAuthor">
             <router-link to="/" class="btn btn-sm btn-outline-secondary">
               <i class="ion-edit"></i>
               Edit Article
             </router-link>
             &nbsp;&nbsp;
-            <router-link to="/" class="btn btn-sm btn-outline-danger">
+            <button
+              @click="deleteArticle"
+              class="btn btn-sm btn-outline-danger"
+            >
               <i class="ion-trash-a"></i>
-              &nbsp; Favorite Post <span class="counter">(29)</span>
-            </router-link>
+              Delete Article
+            </button>
           </span>
 
-          <button class="btn btn-sm btn-outline-secondary">
-            <i class="ion-plus-round"></i>
-            &nbsp; Follow Eric Simons <span class="counter">(10)</span>
-          </button>
-          &nbsp;&nbsp;
-          <button class="btn btn-sm btn-outline-primary">
-            <i class="ion-heart"></i>
-            &nbsp; Favorite Post <span class="counter">(29)</span>
-          </button>
+          <span v-else>
+            <button class="btn btn-sm btn-outline-secondary">
+              <i class="ion-plus-round"></i>
+              &nbsp; Follow Eric Simons <span class="counter">(10)</span>
+            </button>
+            &nbsp;&nbsp;
+            <button class="btn btn-sm btn-outline-primary">
+              <i class="ion-heart"></i>
+              &nbsp; Favorite Post <span class="counter">(29)</span>
+            </button>
+          </span>
         </div>
       </div>
     </div>
@@ -71,7 +90,7 @@ onMounted(() => {
         <div class="col-md-12">
           <p>{{ article.body }}</p>
           <h2 id="introducing-ionic">Introducing RealWorld.</h2>
-          <p>It's a great solution for learning how other frameworks work.</p>
+          <p>{{ article.description }}</p>
         </div>
       </div>
 

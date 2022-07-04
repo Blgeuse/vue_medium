@@ -3,6 +3,7 @@ import { computed, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useStore } from "vuex";
 import Spinner from "../components/Spinner.vue";
+import TagList from "../components/TagList.vue";
 
 const store = useStore();
 const router = useRouter();
@@ -84,7 +85,6 @@ onMounted(() => {
         </div>
       </div>
     </div>
-
     <div class="container page">
       <div class="row article-content">
         <div class="col-md-12">
@@ -92,6 +92,7 @@ onMounted(() => {
           <h2 id="introducing-ionic">Introducing RealWorld.</h2>
           <p>{{ article.description }}</p>
         </div>
+        <TagList v-if="article.tagList" :tag-list="article.tagList" />
       </div>
 
       <hr />

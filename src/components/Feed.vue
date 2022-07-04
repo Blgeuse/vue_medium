@@ -6,6 +6,7 @@ import { stringify, parseUrl } from "query-string";
 import Spinner from "./Spinner.vue";
 import Pagination from "./Pagination.vue";
 import { LIMIT_PAGES } from "../utils/constants";
+import TagList from "./TagList.vue";
 
 const props = defineProps<{
   apiUrl: string;
@@ -83,6 +84,7 @@ onMounted(() => {
         </h1>
         <p>{{ article.description }}</p>
         <span>Read more...</span>
+        <TagList v-if="article.tagList" :tag-list="article.tagList" />
       </router-link>
     </div>
     <Pagination

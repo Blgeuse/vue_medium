@@ -7,6 +7,7 @@ import { LIMIT_PAGES } from "../utils/constants";
 import Spinner from "./Spinner.vue";
 import Pagination from "./Pagination.vue";
 import TagList from "./TagList.vue";
+import AddToFavorites from "./AddToFavorites.vue";
 
 const props = defineProps<{
   apiUrl: string;
@@ -71,9 +72,13 @@ onMounted(() => {
           </router-link>
           <span class="date">{{ article.createdAt }}</span>
         </div>
-        <button class="btn btn-outline-primary btn-sm pull-xs-right">
-          <i class="ion-heart"></i> 32
-        </button>
+        <div class="pull-xs-right">
+          <AddToFavorites
+            :is-favorited="article.favorited"
+            :article-slug="article.slug"
+            :favorites-count="article.favoritesCount"
+          />
+        </div>
       </div>
       <router-link
         :to="{ name: 'article', params: { slug: article.slug } }"

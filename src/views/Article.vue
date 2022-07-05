@@ -4,6 +4,7 @@ import { useRoute, useRouter } from "vue-router";
 import { useStore } from "vuex";
 import Spinner from "../components/Spinner.vue";
 import TagList from "../components/TagList.vue";
+import AddToFavorites from "../components/AddToFavorites.vue";
 
 const store = useStore();
 const router = useRouter();
@@ -77,13 +78,15 @@ onMounted(() => {
           <span v-else>
             <button class="btn btn-sm btn-outline-secondary">
               <i class="ion-plus-round"></i>
-              &nbsp; Follow Eric Simons <span class="counter">(10)</span>
+              &nbsp; Follow Eric Simons
             </button>
             &nbsp;&nbsp;
-            <button class="btn btn-sm btn-outline-primary">
-              <i class="ion-heart"></i>
-              &nbsp; Favorite Post <span class="counter">(29)</span>
-            </button>
+            <AddToFavorites
+              text="Favorite Post"
+              :is-favorited="article.favorited"
+              :article-slug="article.slug"
+              :favorites-count="article.favoritesCount"
+            />
           </span>
         </div>
       </div>
@@ -91,9 +94,8 @@ onMounted(() => {
     <div class="container page">
       <div class="row article-content">
         <div class="col-md-12">
-          <p>{{ article.body }}</p>
-          <h2 id="introducing-ionic">Introducing RealWorld.</h2>
           <p>{{ article.description }}</p>
+          <p>{{ article.body }}</p>
         </div>
         <TagList v-if="article.tagList" :tag-list="article.tagList" />
       </div>

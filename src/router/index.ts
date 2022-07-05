@@ -51,12 +51,12 @@ export default createRouter({
     {
       path: '/profiles/:slug',
       name: 'userProfile',
-      component: () => import('../views/Home.vue'),
+      component: () => import('../views/UserProfile.vue'),
     },
     {
       path: '/profiles/:slug/favorites',
       name: 'userProfileFavorites',
-      component: () => import('../views/Home.vue'),
+      component: () => import('../views/UserProfile.vue'),
     }
   ],
   linkActiveClass: 'active',

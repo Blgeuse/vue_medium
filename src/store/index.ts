@@ -7,6 +7,7 @@ import article from './modules/article';
 import createArticle from './modules/createArticle';
 import editArtcile from './modules/editArticle';
 import addToFavorites from './modules/addToFavorites';
+import userProfile from './modules/userProfile';
 
 export default createStore({
   modules: {
@@ -18,5 +19,6 @@ export default createStore({
     createArticle,
     editArtcile,
     addToFavorites,
+    userProfile,
   }
 })

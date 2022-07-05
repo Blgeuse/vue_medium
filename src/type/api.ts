@@ -53,7 +53,10 @@ export interface EditArticleState {
   validationErrors: null | object,
   isLoading: boolean,
   article: null | object,
-
+}
+export interface UserProfileState {
+  user: null | object,
+  isLoading: boolean,
 }
 export interface UpdateUser {
   email: string | null;

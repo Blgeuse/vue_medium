@@ -15,8 +15,9 @@ const props = defineProps<{
 const store = useStore();
 const route = useRoute();
 
+const apiUrl = computed(() => props.apiUrl);
 function getFeed() {
-  const parsedUrl = parseUrl(props.apiUrl);
+  const parsedUrl = parseUrl(apiUrl.value);
   const params = stringify({
     limit: LIMIT_PAGES,
     offset: offset.value,
@@ -34,6 +35,9 @@ const url = computed(() => route.path);
 const offset = computed(() => currentPage.value * LIMIT_PAGES - LIMIT_PAGES);
 
 watch(currentPage, () => {
+  getFeed();
+});
+watch(apiUrl, () => {
   getFeed();
 });
 onMounted(() => {

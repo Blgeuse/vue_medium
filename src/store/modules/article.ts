@@ -45,6 +45,7 @@ const actions = {
       articleApi.deleteArticle(slug)
         .then(() => {
           context.commit('deleteArticleSuccess');
+          resolve();
         })
         .catch(() => {
           context.commit('deleteArticleFailure');

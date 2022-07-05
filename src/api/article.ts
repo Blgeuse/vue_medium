@@ -12,8 +12,14 @@ const createArticle = (articleInpute: object) => {
               .then(response => response.data.article)
 }
 
+const updateArticle = (slug: string, articleInpute: object) => {
+  return axios.put(`/articles/${slug}`, {article: articleInpute})
+              .then(response => response.data.article)
+}
+
 export default {
   getArticle,
   deleteArticle,
   createArticle,
+  updateArticle
 }

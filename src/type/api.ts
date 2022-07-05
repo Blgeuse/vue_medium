@@ -49,6 +49,12 @@ export interface SettingState {
 export interface CreateArticleState {
   validationErrors: null | object,
 }
+export interface EditArticleState {
+  validationErrors: null | object,
+  isLoading: boolean,
+  article: null | object,
+
+}
 export interface UpdateUser {
   email: string | null;
   password: string | null;

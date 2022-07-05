@@ -8,7 +8,7 @@ const props = defineProps<{
 }>();
 const store = useStore();
 const { title, body, description, tagList, errors, onSubmit, isSubmitting } =
-  useArticleForm();
+  useArticleForm(props.edit);
 const validationsErrors = computed(() => {
   return store.state.createArticle.validationErrors;
 });

@@ -57,7 +57,10 @@ onMounted(() => {
           </div>
 
           <span v-if="isAuthor">
-            <router-link to="/" class="btn btn-sm btn-outline-secondary">
+            <router-link
+              :to="{ name: 'editArticle', params: { slug: article.slug } }"
+              class="btn btn-sm btn-outline-secondary"
+            >
               <i class="ion-edit"></i>
               Edit Article
             </router-link>

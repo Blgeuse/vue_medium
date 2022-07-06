@@ -4,6 +4,7 @@ import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 import Spinner from "../components/Spinner.vue";
 import Feed from "../components/Feed.vue";
+import FollowUser from "../components/FollowUser.vue";
 
 const store = useStore();
 const route = useRoute();
@@ -27,7 +28,7 @@ const isCurrentUserProfile = computed(() => {
   }
   return currentUser.value.username === userProfile.value.username;
 });
-
+function toggleFollowUser() {}
 watch(slug, () => {
   getUserProfile();
 });
@@ -45,17 +46,19 @@ onMounted(() => {
             <img :src="userProfile.image" class="user-img" />
             <h4>{{ userProfile.username }}</h4>
             <p v-if="userProfile.bio">{{ userProfile.bio }}</p>
-            <button class="btn btn-sm btn-outline-secondary action-btn">
-              <i class="ion-plus-round"></i>
-              &nbsp; Follow Eric Simons
-            </button>
             <router-link
               :to="{ name: 'settings' }"
               v-if="isCurrentUserProfile"
               class="btn btn-sm btn-outline-secondary action-btn"
             >
+              <i class="ion-gear-a"></i>
               Edit Profile Settings
             </router-link>
+            <FollowUser
+              v-else
+              :username="userProfile.username"
+              :is-following="userProfile.following"
+            />
           </div>
         </div>
       </div>

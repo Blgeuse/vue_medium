@@ -33,7 +33,16 @@ const actions = {
           context.commit('getUserProfileFailure')
         })
     })
-  }
+  },
+  toggleFollowUser(context: any, {slug, isFollowing}: {slug: string, isFollowing: boolean}) {
+    return new Promise(resolve => {
+      const promise = isFollowing
+      ? userProfileApi.unFollowUserProfile(slug)
+      : userProfileApi.followUserProfile(slug);
+      promise.then(profile =>  resolve(profile))
+    })
+  },
+
 }
 
 export default {

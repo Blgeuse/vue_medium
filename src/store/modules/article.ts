@@ -43,9 +43,9 @@ const actions = {
     return new Promise(resolve => {
       context.commit('deleteArticleStart');
       articleApi.deleteArticle(slug)
-        .then(() => {
+        .then(_ => {
           context.commit('deleteArticleSuccess');
-          resolve();
+          resolve(_);
         })
         .catch(() => {
           context.commit('deleteArticleFailure');

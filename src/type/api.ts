@@ -42,6 +42,7 @@ export interface PopularTagsState {
 export interface articleState {
   article: null | object,
   isLoading: boolean,
+  following: null | boolean,
 }
 export interface SettingState {
   validationErrors: null | object,

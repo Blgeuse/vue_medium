@@ -2,13 +2,13 @@
   "name": "vue_medium",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://blgeuse.github.io/vue_medium/",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "build-gh-pages": "gh-pages -d dist",
     "deploy": "npm run build && npm run build-gh-pages"
-
   },
   "dependencies": {
     "axios": "^0.27.2",

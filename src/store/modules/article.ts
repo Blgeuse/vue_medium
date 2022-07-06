@@ -52,7 +52,6 @@ const actions = {
         })
     })
   },
-
 }
 
 export default {

@@ -59,6 +59,10 @@ export interface UserProfileState {
   user: null | object,
   isLoading: boolean,
 }
+export interface CommentState {
+  comments: null | object | Array<{}>,
+  isLoading: boolean,
+}
 export interface UpdateUser {
   email: string | null;
   password: string | null;

@@ -1,4 +1,4 @@
-import {CommentState} from '../../type/api';
+import {CommentState, Comment} from '../../type/api';
 import commentApi from '../../api/comment';
 
 const state: CommentState = {
@@ -21,7 +21,7 @@ const mutations = {
 
 
   createCommentStart() {},
-  createCommentSuccess(state: CommentState, comment: object) {
+  createCommentSuccess(state: CommentState, comment: Comment) {
     if (Array.isArray(state.comments)){
       state.comments.unshift(comment);
     }

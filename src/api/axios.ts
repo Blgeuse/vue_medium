@@ -9,7 +9,9 @@ const requestAxios = axios.create({
 requestAxios.interceptors.request.use(config => {
   const token = getItem('accessToken');
   const authorizationToken = token ? `Token ${token}` : '';
-  config.headers.Authorization = authorizationToken;
+  if (config.headers) {
+      config.headers.Authorization = authorizationToken;
+  }
   return config;
 })
 

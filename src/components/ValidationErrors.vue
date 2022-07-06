@@ -8,8 +8,10 @@ const errorMessages = computed(() => {
   if (typeof props.validationErrors === "string") {
     return [props.validationErrors];
   }
-  return Object.keys(props.validationErrors).map((name) => {
-    return `${name}: ${props.validationErrors[name].join(", ")}`;
+  console.log(props.validationErrors);
+
+  return Object.entries(props.validationErrors).map((error) => {
+    return `${error[0]}: ${error[1].join(" ")}`;
   });
 });
 </script>

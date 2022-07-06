@@ -3,7 +3,7 @@ import * as yup from 'yup';
 import { useStore } from "vuex";
 import { useRoute, useRouter } from 'vue-router';
 import { computed } from 'vue';
-
+import { ArticleForm } from '../type/api';
 
 export function useArticleForm(edit: boolean = false,) {
   const store = useStore();
@@ -16,7 +16,7 @@ export function useArticleForm(edit: boolean = false,) {
 
   const schema = yup.object({
     title: yup.string().required("Пожалуйста ведите заголовок"),
-    about: yup.string(),
+    body: yup.string(),
     description: yup.string(),
     tagList: yup.string(),
   });
@@ -39,11 +39,14 @@ export function useArticleForm(edit: boolean = false,) {
   });
 
   const onSubmit = handleSubmit(async (values) => {
-    values.tagList = values.tagList?.split(' ');
+    const form: ArticleForm = {...values}
+    if (typeof form.tagList === 'string'){
+      form.tagList = form.tagList.split(' ') || '';
+    }
     if (edit) {
-      store.dispatch('updateArticle', {slug: route.params.slug, articleInpute: values }).then(article => router.push({name: 'article', params: {slug: article.slug}}));
+      store.dispatch('updateArticle', {slug: route.params.slug, articleInpute: form }).then(article => router.push({name: 'article', params: {slug: article.slug}}));
     } else {
-      store.dispatch('createArticle', {articleInpute: values})
+      store.dispatch('createArticle', {articleInpute: form})
       .then(article => router.push({name: 'article', params: {slug: article.slug}}));
     }
   });

@@ -9,10 +9,6 @@
 
 Эта кодовая база была создана для демонстрации полноценного полнофункционального приложения, созданного с помощью Vue3, включая операции CRUD, аутентификацию, маршрутизацию, разбивку на страницы и многое другое.
 
-We've gone to great lengths to adhere to the **Vue3** community styleguides & best practices.
-
-For more information on how to this works with other frontends/backends, head over to the [RealWorld](https://github.com/gothinkster/realworld) repo.
-
 
 - [x] Vite
 - [x] Composition API

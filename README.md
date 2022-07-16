@@ -15,9 +15,9 @@
 - [x] SFC \<script setup> sugar
 - [x] Vue router
 - [x] Vuex
-- [x] TypeScript Vue tsc
 - [x] vee-validate
 - [x] axios
+- [x] (formally) / TypeScript Vue tsc
 
 # Getting started
 

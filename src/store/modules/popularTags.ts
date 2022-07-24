@@ -1,4 +1,4 @@
-import { PopularTagsState } from "../../type/api"
+import { PopularTagsState } from "../../type/state"
 import popularTagsApi from '../../api/popularTags';
 
 const state = {
@@ -11,7 +11,7 @@ const mutations = {
     state.isLoading = true;
     state.tags = null;
   },
-  getPopularTagsSuccess(state: PopularTagsState, payload: object) {
+  getPopularTagsSuccess(state: PopularTagsState, payload: string[]) {
     state.isLoading = false;
     state.tags = payload;
   },

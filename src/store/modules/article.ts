@@ -1,21 +1,22 @@
-import { articleState } from "../../type/api"
+import { ArticleState } from "../../type/state"
+import { Article } from "../../type/api";
 import articleApi from '../../api/article';
 
-const state = {
+const state: ArticleState = {
   article: null,
   isLoading: false,
 }
 
 const mutations = {
-  getArticleStart(state: articleState) {
+  getArticleStart(state: ArticleState) {
     state.isLoading = true;
     state.article = null;
   },
-  getArticleSuccess(state: articleState, payload: object) {
+  getArticleSuccess(state: ArticleState, payload: Article) {
     state.isLoading = false;
     state.article = payload;
   },
-  getArticleFailure(state: articleState) {
+  getArticleFailure(state: ArticleState) {
     state.isLoading = false;
   },
 

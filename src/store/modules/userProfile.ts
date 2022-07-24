@@ -1,4 +1,5 @@
-import { UserProfileState } from "../../type/api"
+import { UserProfileState } from '../../type/state';
+import { UserProfile } from '../../type/api';
 import userProfileApi from '../../api/userProfile';
 
 const state = {
@@ -11,7 +12,7 @@ const mutations = {
     state.isLoading = true;
     state.user = null;
   },
-  getUserProfileSuccess(state: UserProfileState, payload: object) {
+  getUserProfileSuccess(state: UserProfileState, payload: UserProfile) {
     state.isLoading = false;
     state.user = payload;
   },

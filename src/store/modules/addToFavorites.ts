@@ -1,4 +1,5 @@
 import addToFavoritesApi from "../../api/addToFavorites"
+
 const actions = {
   addToFavorites(context: object, {slug, isFavorited} : {slug: string, isFavorited: boolean}) {
     return new Promise(resolve => {

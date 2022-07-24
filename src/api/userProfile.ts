@@ -1,15 +1,19 @@
 import axios from './axios';
+import { UserProfile } from '../type/api';
 
-const getUserProfile = (slug: string) => {
-  return axios.get(`/profiles/${slug}`).then(response => response.data.profile)
+const getUserProfile = async (slug: string): Promise<UserProfile> => {
+  const response = await axios.get(`/profiles/${slug}`);
+  return response.data.profile;
 }
 
-const followUserProfile = (slug: string) => {
-  return axios.post(`/profiles/${slug}/follow`).then(response => response.data.profile);
+const followUserProfile = async (slug: string): Promise<UserProfile> => {
+  const response = await axios.post(`/profiles/${slug}/follow`);
+  return response.data.profile;
 }
 
-const unFollowUserProfile= (slug: string) => {
-  return axios.delete(`/profiles/${slug}/follow`).then(response => response.data.profile);
+const unFollowUserProfile= async (slug: string): Promise<UserProfile> => {
+  const response = await axios.delete(`/profiles/${slug}/follow`);
+  return response.data.profile;
 }
 
 export default {

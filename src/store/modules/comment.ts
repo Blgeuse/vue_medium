@@ -1,4 +1,5 @@
-import {CommentState, Comment} from '../../type/api';
+import { CommentState } from '../../type/state';
+import { Comment, CreateComment} from '../../type/api';
 import commentApi from '../../api/comment';
 
 const state: CommentState = {
@@ -11,7 +12,7 @@ const mutations = {
     state.isLoading = true;
     state.comments = null;
   },
-  getCommentSuccess(state: CommentState, payload: object) {
+  getCommentSuccess(state: CommentState, payload: Comment[]) {
     state.isLoading = false;
     state.comments = payload;
   },
@@ -51,7 +52,7 @@ const actions = {
         })
     })
   },
-  createComment(context: any, {slug, comment} : {slug: string, comment: object}) {
+  createComment(context: any, {slug, comment} : {slug: string, comment: CreateComment}) {
     context.commit('createCommentStart', comment)
     return new Promise(resolve => {
       commentApi.createComment(comment, slug)

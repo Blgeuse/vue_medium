@@ -1,4 +1,5 @@
-import { FeedState } from "../../type/api"
+import { FeedState } from "../../type/state"
+import { FeedResponses } from "../../type/api";
 import feedApi from '../../api/feed';
 
 const state = {
@@ -11,7 +12,7 @@ const mutations = {
     state.isLoading = true;
     state.data = null;
   },
-  getFeedSuccess(state: FeedState, payload: object) {
+  getFeedSuccess(state: FeedState, payload: FeedResponses) {
     state.isLoading = false;
     state.data = payload;
   },

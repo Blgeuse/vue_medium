@@ -47,10 +47,10 @@ const size = computed(() => (props.size ? `${props.size}px` : "200px"));
 
 <style scoped>
 .center {
-  top: 0;
   margin: auto;
   height: 200px;
   position: absolute;
+  top: 0;
   left: 0;
   bottom: 0;
   right: 0;

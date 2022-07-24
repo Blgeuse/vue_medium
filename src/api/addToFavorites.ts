@@ -1,10 +1,13 @@
 import axios from './axios';
+import { Favorites } from '../type/api';
 
-const addToFavorites = (slug: string) => {
-  return axios.post(`/articles/${slug}/favorite`).then(response => response.data.article);
+const addToFavorites = async (slug: string): Promise<Favorites> => {
+  const response = await axios.post(`/articles/${slug}/favorite`);
+  return response.data.article;
 }
-const removeFromFavorites = (slug: string) => {
-  return axios.delete(`/articles/${slug}/favorite`).then(response => response.data.article);
+const removeFromFavorites = async (slug: string): Promise<Favorites> => {
+  const response = await axios.delete(`/articles/${slug}/favorite`);
+  return response.data.article;
 }
 export default {
   addToFavorites,

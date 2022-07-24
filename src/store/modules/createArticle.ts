@@ -1,18 +1,19 @@
 import articleApi from '../../api/article';
-import {CreateArticleState} from '../../type/api';
+import {CreateArticleState} from '../../type/state';
+import { CreateArticle, ResponsesErrors } from '../../type/api';
 
 const state: CreateArticleState = {
   validationErrors: null,
 }
 
 const mutations = {
-  createArticleFailure(state: CreateArticleState, payload: object){
+  createArticleFailure(state: CreateArticleState, payload: ResponsesErrors){
     state.validationErrors = payload
   }
 }
 
 const actions = {
-  createArticle(context: any, {articleInpute} : {articleInpute: object}) {
+  createArticle(context: any, {articleInpute} : {articleInpute: CreateArticle}) {
     return new Promise(resolve => {
       articleApi.createArticle(articleInpute)
       .then(article => {

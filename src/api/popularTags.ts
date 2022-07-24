@@ -1,7 +1,8 @@
 import axios from './axios';
 
-const getPopularTags = () => {
-  return axios.get('/tags').then(response => response.data.tags);
+const getPopularTags = async (): Promise<string[]> => {
+  const response = await axios.get('/tags');
+  return response.data.tags;
 }
 
 export default {

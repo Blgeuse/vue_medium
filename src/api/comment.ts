@@ -1,20 +1,23 @@
 import axios from './axios';
+import { GetCommentsResponses, CreateComment, CreateCommentResponses } from '../type/api';
 
-const getComment = (slug: string) => {
-  return axios.get(`/articles/${slug}/comments`).then(response => response.data.comments)
+const getComment = async (slug: string): Promise<GetCommentsResponses> => {
+  const response = await axios.get(`/articles/${slug}/comments`);
+  return response.data.comments;
 }
 
-const deleteComment = (slug: string, id: number) => {
+const createComment = async (comment: CreateComment, slug: string): Promise<CreateCommentResponses> => {
+  const response = await axios.post(`/articles/${slug}/comments`, { comment: comment });
+  return response.data.comment;
+}
+
+const deleteComment = (slug: string, id: number): Promise<any> => {
   return axios.delete(`/articles/${slug}/comments/${id}`)
 }
 
-const createComment = (comment: object, slug: string) => {
-  return axios.post(`/articles/${slug}/comments`, {comment: comment})
-              .then(response => response.data.comment)
-}
 
 export default {
   getComment,
-  deleteComment,
   createComment,
+  deleteComment,
 }

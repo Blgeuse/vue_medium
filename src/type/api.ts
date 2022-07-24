@@ -91,10 +91,10 @@ export interface FeedResponses {
   //-Create articles
 
 export interface CreateArticle {
-  title: string,
-  description: string,
-  body: string,
-  tagList: string[]
+  title: string | undefined,
+  description: string | undefined,
+  body: string | undefined,
+  tagList: string[] | string | undefined,
 }
 
   //-Update Article

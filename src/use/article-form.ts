@@ -3,7 +3,7 @@ import * as yup from 'yup';
 import { useStore } from "vuex";
 import { useRoute, useRouter } from 'vue-router';
 import { computed } from 'vue';
-import { ArticleForm } from '../type/api';
+import { CreateArticle } from '../type/api';
 
 export function useArticleForm(edit: boolean = false,) {
   const store = useStore();
@@ -35,11 +35,11 @@ export function useArticleForm(edit: boolean = false,) {
     initialValue: edit ? (article.value.body || '') : "",
   });
   const { value: tagList } = useField('tagList', undefined, {
-    initialValue: edit ? (article.value.tagList.join(' ') || '') : "",
+    initialValue: edit ? (article.value.tagList.join(' ') || []) : "",
   });
 
   const onSubmit = handleSubmit(async (values) => {
-    const form: ArticleForm = {...values}
+    const form: CreateArticle = {...values}
     if (typeof form.tagList === 'string'){
       form.tagList = form.tagList.split(' ') || '';
     }
